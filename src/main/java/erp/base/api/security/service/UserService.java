@@ -114,23 +114,24 @@ public class UserService {
     public Mono<String> logout(String token) {
         return sesionRepository.findByToken(token)
                 .switchIfEmpty(Mono.error(new CustomException(HttpStatus.NOT_FOUND, ErrorMessage.SESSION_NOT_FOUND)))
-                .flatMap(sesion -> userRepository.findById(sesion.getIdUsr())
-                        .flatMap(usuario -> accesoDocumentoRepository.findByNameUsuario(usuario.getNickUsr())
-                                .collectList()
-                                .flatMap(accesoDocumentos -> {
-                                    if (accesoDocumentos != null && !accesoDocumentos.isEmpty()) {
-                                        return accesoDocumentoRepository.deleteAll(accesoDocumentos)
-                                                .then(Mono.fromRunnable(() -> sesion.setEstado(Boolean.FALSE)))
-                                                .then(sesionRepository.save(sesion))
-                                                .thenReturn("Logout exitoso");
-                                    } else {
-                                        sesion.setEstado(Boolean.FALSE);
-                                        return sesionRepository.save(sesion)
-                                                .thenReturn("Logout exitoso");
-                                    }
-                                })
-                        )
-                )
+                .flatMap(sesion -> {
+                    return userRepository.findById(sesion.getIdUsr())
+                            .flatMap(usuario -> accesoDocumentoRepository.findByNameUsuario(usuario.getUsername())
+                                    .collectList()
+                                    .flatMap(accesoDocumentos -> {
+                                        if (accesoDocumentos != null && !accesoDocumentos.isEmpty()) {
+                                            return accesoDocumentoRepository.deleteAll(accesoDocumentos)
+                                                    .then(Mono.fromRunnable(() -> sesion.setEstado(Boolean.FALSE)))
+                                                    .then(sesionRepository.save(sesion))
+                                                    .thenReturn("Logout exitoso");
+                                        } else {
+                                            sesion.setEstado(Boolean.FALSE);
+                                            return sesionRepository.save(sesion)
+                                                    .thenReturn("Logout exitoso");
+                                        }
+                                    })
+                            );
+                })
                 .onErrorResume(throwable -> Mono.just("Logout Fallido"));
     }
 

@@ -62,6 +62,14 @@ public class TbaUsuario {
     @JsonProperty("time")
     private Integer tiempoUsr;
 
+    @Column("creditomaximo_usr")
+    @JsonProperty("maxCredit")
+    private java.math.BigDecimal creditomaximoUsr;
+
+    @Column("diasmaximo_usr")
+    @JsonProperty("maxDays")
+    private Integer diasmaximoUsr;
+
     @Column("coddesbloqueo_usr")
     @JsonProperty("unlockCode")
     private String codigoDesbloqueoUsr;

@@ -14,69 +14,77 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
-@Table("TBA_USUARIO")
+@Table("tba_usuario")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class User implements UserDetails {
     @Id
-    @Column("ID_USR")
+    @Column("id_usr")
     @JsonProperty("userId")
     private Integer idUsr;
 
-    @Column("ID_SUCURSAL")
+    @Column("id_sucursal")
     @JsonProperty("branchId")
     private Integer idSucursal;
 
-    @Column("ID_PERSONA")
+    @Column("id_persona")
     @JsonProperty("personId")
     private Integer idPersona;
 
-    @Column("NICK_USR")
+    @Column("nick_usr")
     @JsonProperty("nick")
     private String nickUsr;
 
-    @Column("PASS_USR")
+    @Column("pass_usr")
     @JsonProperty("password")
     private String passUsr;
 
-    @Column("CARGO_USR")
+    @Column("cargo_usr")
     @JsonProperty("position")
     private Integer cargoUsr;
 
-    @Column("FECHAINGRESO_USR")
+    @Column("fechaingreso_usr")
     @JsonProperty("entryDate")
     private LocalDateTime fechaIngresoUsr;
 
-    @Column("FECHAINACTIVACION_USR")
+    @Column("fechainactivacion_usr")
     @JsonProperty("deactivationDate")
     private LocalDateTime fechaInactivacionUsr;
 
-    @Column("HORAINICIO_USR")
+    @Column("horainicio_usr")
     @JsonProperty("startTime")
     private String horaInicioUsr;
 
-    @Column("HORAFIN_USR")
+    @Column("horafin_usr")
     @JsonProperty("endTime")
     private String horaFinUsr;
 
-    @Column("TIEMPO_USR")
+    @Column("tiempo_usr")
     @JsonProperty("time")
     private Integer tiempoUsr;
+
+    @Column("creditomaximo_usr")
+    @JsonProperty("maxCredit")
+    private java.math.BigDecimal creditomaximoUsr;
+
+    @Column("diasmaximo_usr")
+    @JsonProperty("maxDays")
+    private Integer diasmaximoUsr;
 
     @Column("id_caja")
     @JsonProperty("cashId")
     private Integer idCaja;
 
-    @Column("CODDESBLOQUEO_USR")
+    @Column("coddesbloqueo_usr")
     @JsonProperty("unlockCode")
     private String codigoDesbloqueoUsr;
 
-    @Column("ESTADO_USR")
+    @Column("estado_usr")
     @JsonProperty("state")
     private Boolean estadoUsr;
 
-    @Column("IMG_USR")
+    @Column("img_usr")
     @JsonProperty("photo")
     private String imgUsr;
 
@@ -149,5 +157,13 @@ public class User implements UserDetails {
 
     public Integer getIdSucursal() {
         return idSucursal;
+    }
+
+    public java.math.BigDecimal getCreditomaximoUsr() {
+        return creditomaximoUsr;
+    }
+
+    public Integer getDiasmaximoUsr() {
+        return diasmaximoUsr;
     }
 }

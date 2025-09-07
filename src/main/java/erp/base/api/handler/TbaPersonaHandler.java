@@ -12,6 +12,12 @@ import erp.base.api.service.TbaProveedorService;
 import erp.base.api.utils.Paginacion;
 import erp.base.api.utils.Utils;
 import erp.base.api.validation.ObjectValidator;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -27,6 +33,7 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 @Log4j2
+@Tag(name = "Person Management", description = "Person management endpoints")
 public class TbaPersonaHandler {
     private final TbaPersonaService tbaPersonaService;
     private final ObjectValidator objectValidator;
@@ -39,6 +46,13 @@ public class TbaPersonaHandler {
      * @param request request
      * @return ServerResponse
      */
+    @Operation(summary = "Create person", description = "Creates a new person")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Person created successfully", 
+                    content = @Content(schema = @Schema(implementation = TbaPersona.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid input data"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     public Mono<ServerResponse> create(ServerRequest request) {
         Mono<TbaPersonaDto> personMono = request.bodyToMono(TbaPersonaDto.class).doOnNext(objectValidator::validate).log();
         return personMono.flatMap(person ->
@@ -56,6 +70,14 @@ public class TbaPersonaHandler {
      * @param request request
      * @return ServerResponse
      */
+    @Operation(summary = "Update person", description = "Updates an existing person by ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Person updated successfully", 
+                    content = @Content(schema = @Schema(implementation = TbaPersona.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid input data"),
+            @ApiResponse(responseCode = "404", description = "Person not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     public Mono<ServerResponse> update(ServerRequest request) {
         Integer id = Integer.valueOf(request.pathVariable("id"));
         Mono<TbaPersonaDto> personMono = request.bodyToMono(TbaPersonaDto.class).doOnNext(objectValidator::validate).log();

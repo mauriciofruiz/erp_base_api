@@ -66,6 +66,10 @@ public class MainSecurity {
                 .authorizeExchange(authorizeExchangeSpec ->
                         authorizeExchangeSpec
                                 .pathMatchers(PathConstants.LOGIN).permitAll()
+                                // Swagger UI endpoints
+                                .pathMatchers("/swagger-ui/**", "/swagger-ui.html").permitAll()
+                                .pathMatchers("/v3/api-docs/**", "/v3/api-docs").permitAll()
+                                .pathMatchers("/swagger-resources/**", "/webjars/**").permitAll()
                                 .anyExchange().authenticated()
                 )
                 .addFilterAfter(jwtFilter, SecurityWebFiltersOrder.CORS)

@@ -33,9 +33,16 @@ public class JwtFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getPath().value();
-        if(path.contains("login")) {
+        
+        // Skip JWT validation for login and Swagger UI endpoints
+        if(path.contains("login") || 
+           path.startsWith("/swagger-ui") || 
+           path.startsWith("/v3/api-docs") || 
+           path.startsWith("/swagger-resources") || 
+           path.startsWith("/webjars")) {
             return chain.filter(exchange);
         }
+        
         String auth = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
         if(auth == null)
             return Mono.error(new CustomException(HttpStatus.BAD_REQUEST, "no token was found"));

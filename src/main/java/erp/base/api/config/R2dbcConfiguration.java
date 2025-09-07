@@ -20,6 +20,9 @@ public class R2dbcConfiguration {
 
     @Value("${spring.r2dbc.password}")
     private String password;
+
+    @Value("${spring.r2dbc.schema:double}")
+    private String schema;
     @Bean
     public ConnectionFactory connectionFactory() {
 
@@ -35,6 +38,7 @@ public class R2dbcConfiguration {
                 .database(database)
                 .username(username)
                 .password(password)
+                .schema(schema)
                 .build());
     }
 

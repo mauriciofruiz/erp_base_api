@@ -1,6 +1,5 @@
 package erp.base.api.repository;
 
-import erp.base.api.dto.TbaUsuarioDto;
 import erp.base.api.models.TbaUsuario;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.r2dbc.repository.Query;
