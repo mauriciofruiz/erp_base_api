@@ -13,7 +13,7 @@ RUN ./gradlew build -x test --continue
 FROM amazoncorretto:20.0.2-alpine3.18
 
 WORKDIR /app
-COPY --from=builder /app/build/libs/tba-0.0.1-SNAPSHOT.jar .
+COPY --from=builder /app/build/libs/erp_base_api-0.0.1-SNAPSHOT.jar .
 
 # Install tzdata and set the timezone to America/Guayaquil
 RUN apk update && \
@@ -26,7 +26,7 @@ EXPOSE 80
 
 # Metadata as defined in suggestions
 LABEL version="1.0" \
-      description="tba Application" \
+      description="erp_base_api Application" \
       maintainer="Sicon <programador1_ti@siconecuador.com>"
 
-CMD ["java", "-jar", "tba-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "erp_base_api-0.0.1-SNAPSHOT.jar"]

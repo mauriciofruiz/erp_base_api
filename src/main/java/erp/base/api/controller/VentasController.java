@@ -1,0 +1,45 @@
+package erp.base.api.controller;
+
+import erp.base.api.Preference;
+import erp.base.api.constants.ErrorMessage;
+import erp.base.api.dto.response.EstadoCuentoPagarDto;
+import erp.base.api.exception.CustomException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+@Service
+public class VentasController {
+
+    private WebClient webClient;
+
+    // Constructor to initialize WebClient with a token
+    @Autowired
+    public VentasController(Preference preference) {
+        this.webClient = WebClient.builder()
+                .baseUrl(preference.getVentasService())
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+    }
+
+    public Mono<EstadoCuentoPagarDto> getEstadoCuentaCobrar(Integer clientId, HttpHeaders headers) {
+        return webClient
+                .get()
+                .uri("/factura-cuota/cliente/" + clientId)
+                .headers(httpHeaders -> httpHeaders.addAll(headers))
+                .retrieve()
+                .onStatus(
+                        status -> status.is4xxClientError() || status.is5xxServerError(),
+                        clientResponse -> clientResponse.bodyToMono(String.class)
+                                .flatMap(errorMessage -> Mono.error(new CustomException((HttpStatus) clientResponse.statusCode(), errorMessage)))
+                )
+                .bodyToMono(EstadoCuentoPagarDto.class)
+                .onErrorResume(e -> Mono.error(new CustomException(HttpStatus.NOT_FOUND, ErrorMessage.ERROR_GETTING_DATA_CONTABILIDAD + " - " + ErrorMessage.PROVIDER_NOT_FOUND + clientId)));
+    }
+
+}
+ 

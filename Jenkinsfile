@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t programador1sicon/sserp:tba .'
+        sh 'docker build -t programador1sicon/sserp:erp_base_api .'
       }
     }
     stage('Login') {
@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push programador1sicon/sserp:tba'
+        sh 'docker push programador1sicon/sserp:erp_base_api'
       }
     }
   }

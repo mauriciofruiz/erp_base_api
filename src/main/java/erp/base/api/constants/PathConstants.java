@@ -1,0 +1,85 @@
+package erp.base.api.constants;
+
+/**
+ * Clase que maneja las constantes de las rutas
+ */
+public class PathConstants {
+
+    public static final String ID_PARAM = "/{id}";
+    public static final String LOGIN = "/login";
+    public static final String LOGOUT = "/logout";
+    public static final String UPDATE = "/update";
+    public static final String FIND = "/find";
+    public static final String DELETE = "/delete";
+    public static final String GET = "/get";
+    public static final String POSITION = "/cargo";
+    public static final String DEPARTMENT = "/departamento";
+    public static final String MARITAL_STATUS = "/estado-civil";
+    public static final String GENDER = "/genero";
+    public static final String COUNTRY = "/pais";
+    public static final String PARISH = "/parroquia";
+    public static final String PERSON = "/persona";
+    public static final String BRANCH = "/sucursal";
+    public static final String USER = "/usuario";
+    public static final String TAX_IDENTIFICATION = "/identificacion-fiscal";
+    public static final String CONTRIBUTOR_TYPE = "/tipo-contribuyente";
+    public static final String MENU = "/menu";
+    public static final String MENU_USER = "/menu-usuario";
+    public static final String GROUP_AREA = "/area-grupo";
+    public static final String CITY = "/ciudad";
+    public static final String PROVINCE = "/provincia";
+    public static final String BRANCH_CATEGORY = "/categoria-sucursal";
+    public static final String REGION = "/region";
+    public static final String ACCOUNT_TYPE = "/tipo-cuenta";
+    public static final String BANK = "/banco";
+    public static final String CATALOG_BANK = "/catalogo-banco";
+    public static final String PROVIDER = "/proveedor";
+    public static final String BY_PARAMETER = "/por-parametro";
+    public static final String EMPLOYEE = "/empleado";
+    public static final String EMPLOYEE_PERSON = EMPLOYEE + "/persona";
+    public static final String EMPLOYEE_INFORMATION = "/informacion-contractual";
+    public static final String ACCOUNTING_DATA_EMPLOYEE = "/datos-contables";
+    public static final String ACTIVE = "/activo";
+    public static final String PURCHASE_REQUEST = "/solicitud-compra";
+    public static final String PURCHASE_ORDER = "/orden-compra";
+    public static final String DOCUMENT_ACCESS = "/acceso-documento";
+    public static final String TRANSACTION_LOG = "/bitacora";
+    public static final String PROVIDER_TYPE = "/tipo-proveedor";
+    public static final String RETENTION_IVA = "/retencion-iva";
+    public static final String RETENTION_SOURCE = "/retencion-fuente";
+    public static final String PAYMENT_METHOD_COLLECTION = "/forma-pago-cobro";
+    public static final String FISCAL_IDENTIFICATION_TYPE = "/tipo-identificacion-fiscal";
+    public static final String TAX_SUPPORT = "/sustento-tributario";
+    public static final String VOUCHER_TYPE = "/tipo-comprobante";
+    public static final String IMPORT = "/importacion";
+    public static final String ORDER_LIST = "/lista-pedido";
+    public static final String VERIFY_EXISTENCE = "/verificar-existencia";
+    public static final String TAX_RATE = "/tarifa-iva";
+    public static final String CARRIER = "/transportista";
+    public static final String VEHICLE_TYPE = "/tipo-vehiculo";
+    public static final String TRANSPORTATION = "/transporte";
+    public static final String ROLE = "/rol";
+    public static final String DOCUMENT_TAX = "/impuesto-documento";
+    public static final String SESSION_STATE = "/estado-sesion";
+    public static final String PERIOD = "/periodo";
+    public static final String USER_ROLE = "/rol-usuario";
+    public static final String CLIENT = "/cliente";
+    public static final String FICHA = "/ficha";
+    public static final String CATEGORY_CLIENT = "/categoria-cliente";
+    public static final String SALE = "/venta";
+    public static final String BOX = "/caja";
+    public static final String CONSULT = "/consultar";
+    public static final String LIST = "/lista";
+    public static final String LAST = "/ultimo";
+    public static final String CHECK = "/cheque";
+    public static final String SESSION = "/sesion";
+    public static final String PROJECT = "/proyecto";
+    public static final String DOCUMENT = "/documento";
+    public static final String CARD = "/tarjeta";
+    public static final String ACQUIRER = "/adquiriente";
+    public static final String EXCEPTIONS_CUSTOMER_DISCOUNT = "/excepciones-cliente-descuento";
+    public static final String COMPANY = "/empresa";
+    public static final String PARAMS = "/params";
+    public static final String RETENTION_IVA_CLIENT = "/retencion-iva-cliente";
+    public static final String RETENTION_SOURCE_CLIENT = "/retencion-fuente-cliente";
+}
