@@ -1,17 +1,13 @@
 package erp.base.api.security.config;
 
 import erp.base.api.constants.PathConstants;
-import erp.base.api.models.TbaUsuario;
 import erp.base.api.repository.TbaUsuarioRepository;
-import erp.base.api.security.entity.User;
 import erp.base.api.security.jwt.JwtFilter;
 import erp.base.api.security.repository.SecurityContextRepository;
-import erp.base.api.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.domain.ReactiveAuditorAware;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;

@@ -120,6 +120,7 @@ application-*.properties
 .env.development.local
 .env.test.local
 .env.production.local
+enviroment.template
 
 # Node.js (if using frontend tools)
 node_modules/

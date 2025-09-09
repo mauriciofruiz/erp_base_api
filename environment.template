@@ -1,0 +1,51 @@
+# ===========================================
+# ERP BASE API - Environment Variables Template
+# ===========================================
+# Copy this file to .env and modify the values as needed for your environment
+# The .env file is ignored by git for security reasons
+
+# Server Configuration
+SERVER_PORT=8087
+
+# Database Configuration (R2DBC)
+DB_USERNAME=postgres
+DB_PASSWORD=database123
+R2DBC_URL=r2dbc:postgresql://host.docker.internal:5432/erp_double?currentSchema=double
+DB_SCHEMA=double
+
+# Database Connection Pool Settings
+DB_POOL_MAX_IDLE_TIME=30
+DB_POOL_INITIAL_SIZE=5
+DB_POOL_MAX_SIZE=50
+
+# JWT Configuration
+JWT_SECRET=secretsecretsecretsecretsecretsecretsecretsecretsecret
+
+# Logging Configuration
+LOGGING_LEVEL_ROOT=INFO
+LOGGING_LEVEL_ERP_BASE_API=DEBUG
+
+# Management Endpoints
+MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE=health,info,metrics
+MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS=when_authorized
+
+# File Upload Configuration
+MAX_FILE_SIZE=10MB
+MAX_REQUEST_SIZE=10MB
+
+# Additional Configuration
+SPRING_PROFILES_ACTIVE=dev
+
+# Service URLs for Development Environment
+ADQUISICION_SERVICE_URL_DEV=http://localhost:8081
+ERP_BASE_API_SERVICE_URL_DEV=http://localhost:8087
+INVENTARIO_SERVICE_URL_DEV=http://localhost:8083
+CONTABILIDAD_SERVICE_URL_DEV=http://localhost:8084
+VENTAS_SERVICE_URL_DEV=http://localhost:8085
+
+# Service URLs for Production Environment
+ADQUISICION_SERVICE_URL_PROD=http://172.16.24.205:8081
+ERP_BASE_API_SERVICE_URL_PROD=http://172.16.24.205:8087
+INVENTARIO_SERVICE_URL_PROD=http://172.16.24.205:8083
+CONTABILIDAD_SERVICE_URL_PROD=http://172.16.24.205:8084
+VENTAS_SERVICE_URL_PROD=http://172.16.24.205:8085
