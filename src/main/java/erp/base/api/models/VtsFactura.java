@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Table("VTS_FACTURA")
+@Table("FACTURA")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

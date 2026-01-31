@@ -190,7 +190,7 @@ public class TbaUsuarioService {
     }
 
     /**
-     * Método que sirve para mappear los data de la tabla TBA_USUARIO
+     * Método que sirve para mappear los data de la tabla USUARIO
      *
      * @param row fila de la tabla
      * @return TbaUsuario
@@ -225,8 +225,8 @@ public class TbaUsuarioService {
     private Mono<Long> getCountByIdentificationAndState(String identification, Boolean status) {
 
         return databaseClient
-                .sql("SELECT COUNT(*) FROM TBA_USUARIO " +
-                        "WHERE ID_PERSONA IN (SELECT ID_PERSONA FROM TBA_PERSONA " +
+                .sql("SELECT COUNT(*) FROM USUARIO " +
+                        "WHERE ID_PERSONA IN (SELECT ID_PERSONA FROM PERSONA " +
                         "WHERE IDENTIFICACION_PERSONA LIKE :identification) AND ESTADO_USR = :status")
                 .bind("identification", "%" + identification + "%")
                 .bind("status", status)
@@ -246,8 +246,8 @@ public class TbaUsuarioService {
     private Flux<TbaUsuario> getUsersByIdentificationAndState(String identification, Boolean status, Integer
             page, Integer limit) {
         Flux<TbaUsuario> usersFlux = databaseClient
-                .sql("SELECT * FROM TBA_USUARIO " +
-                        "WHERE ID_PERSONA IN (SELECT ID_PERSONA FROM TBA_PERSONA " +
+                .sql("SELECT * FROM USUARIO " +
+                        "WHERE ID_PERSONA IN (SELECT ID_PERSONA FROM PERSONA " +
                         "WHERE IDENTIFICACION_PERSONA LIKE :identification) AND ESTADO_USR = :status " +
                         "LIMIT :limit OFFSET :offset")
                 .bind("identification", "%" + identification + "%")
@@ -268,8 +268,8 @@ public class TbaUsuarioService {
      */
     private Mono<Long> getCountByPersonNameAndStatus(String name, Boolean status) {
         return databaseClient
-                .sql("SELECT COUNT(*) FROM TBA_USUARIO " +
-                        "WHERE ID_PERSONA IN (SELECT ID_PERSONA FROM TBA_PERSONA " +
+                .sql("SELECT COUNT(*) FROM USUARIO " +
+                        "WHERE ID_PERSONA IN (SELECT ID_PERSONA FROM PERSONA " +
                         "WHERE NOMBRE_PERSONA LIKE :name) AND ESTADO_USR = :status")
                 .bind("name", "%" + name + "%")
                 .bind("status", status)
@@ -288,8 +288,8 @@ public class TbaUsuarioService {
      */
     private Flux<TbaUsuario> getUsersByPersonNameAndStatus(String name, Boolean status, Integer page, Integer limit) {
         return databaseClient
-                .sql("SELECT * FROM TBA_USUARIO " +
-                        "WHERE ID_PERSONA IN (SELECT ID_PERSONA FROM TBA_PERSONA " +
+                .sql("SELECT * FROM USUARIO " +
+                        "WHERE ID_PERSONA IN (SELECT ID_PERSONA FROM PERSONA " +
                         "WHERE NOMBRE_PERSONA LIKE :name) AND ESTADO_USR = :status " +
                         "LIMIT :limit OFFSET :offset")
                 .bind("name", "%" + name + "%")

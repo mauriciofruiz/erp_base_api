@@ -9,7 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Table("TBA_PERSONA")
+@Table("PERSONA")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

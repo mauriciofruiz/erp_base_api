@@ -24,7 +24,7 @@ public class TbaUsuarioCustom {
 
     private String buildQueryForSearch() {
         return "SELECT usu.*" +
-                " FROM TBA_ROLUSUARIO rolusu" +
+                " FROM ROLUSUARIO rolusu" +
                 " JOIN tba_usuario usu ON rolusu.ID_USR = usu.ID_USR" +
                 " WHERE rolusu.ID_ROL = :roleId";
     }

@@ -11,7 +11,7 @@ package erp.base.api.models;
 
         import java.time.LocalDateTime;
 
-@Table("TBA_DOCUMENTOS_ELECTRONICOS")
+@Table("DOCUMENTOS_ELECTRONICOS")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

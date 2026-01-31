@@ -68,7 +68,7 @@ public class TbaCajaRepositoryCustomImpl implements TbaCajaRepositoryCustom {
             Boolean isCount
     ) {
         StringBuilder queryBuilder = new StringBuilder(isCount ? "SELECT COUNT(*)" : "SELECT caj.id_caja as idCaja, caj.id_sucursal as idSucursal, caj.nombre_caja as nombreCaja, caj.estado_caja as estadoCaja");
-        queryBuilder.append(" FROM TBA_CAJA caj");
+        queryBuilder.append(" FROM CAJA caj");
         queryBuilder.append(" WHERE caj.estado_caja = true");
         if (branchId != null)
             queryBuilder.append(" AND caj.id_sucursal = :branchId");

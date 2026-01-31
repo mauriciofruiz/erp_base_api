@@ -12,8 +12,8 @@ import java.util.List;
 public interface AdqCalendarioPagoRepository extends ReactiveCrudRepository<AdqCalendarioPago, Integer>{
 
     @Query("SELECT * " +
-            "FROM ADQ_CALENDARIOPAGO CALENDARIO "+
-            "INNER JOIN ADQ_FACTURAPROVEEDOR FACTURA ON CALENDARIO.ID_FACTURAPROVEEDOR = FACTURA.ID_FACTURAPROVEEDOR "+
+            "FROM CALENDARIOPAGO CALENDARIO "+
+            "INNER JOIN FACTURAPROVEEDOR FACTURA ON CALENDARIO.ID_FACTURAPROVEEDOR = FACTURA.ID_FACTURAPROVEEDOR "+
             "WHERE FACTURA.ID_FACTURAPROVEEDOR = :providerId "+
             "AND FACTURA.ID_ESTADOFACPROV NOT IN(:idEstadoFacturaProveedorList)")
     Flux<AdqCalendarioPago> findPaymentScheduleByProviderId(Integer providerId, List<Integer> idEstadoFacturaProveedorList);

@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @EqualsAndHashCode(callSuper = true)
-@Table("tba_rol")
+@Table("rol")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

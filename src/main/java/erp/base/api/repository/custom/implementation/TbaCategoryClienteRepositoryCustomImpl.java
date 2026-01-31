@@ -55,7 +55,7 @@ public class TbaCategoryClienteRepositoryCustomImpl implements TbaCategoryClient
             Boolean isCount
     ) {
         StringBuilder queryBuilder = new StringBuilder(isCount ? "SELECT COUNT(*)" : "SELECT *");
-        queryBuilder.append(" FROM TBA_CATEGORIACLIENTE catCli");
+        queryBuilder.append(" FROM CATEGORIACLIENTE catCli");
         queryBuilder.append(" WHERE catCli.activocategoria_categoriacliente = true");
         if (name != null)
             queryBuilder.append(" AND UPPER(catCli.nombre_categoriacliente) LIKE UPPER(CONCAT('%',:name,'%'))");

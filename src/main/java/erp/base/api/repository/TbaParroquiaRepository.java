@@ -11,7 +11,7 @@ import reactor.core.publisher.Flux;
 @Repository
 public interface TbaParroquiaRepository extends ReactiveCrudRepository<TbaParroquia, Integer> {
 
-    @Query(" SELECT  TP.ID_PARROQUIA, TP.ID_CIUDAD, TP.NOMBRE_PARROQUIA FROM TBA_PARROQUIA TP" +
+    @Query(" SELECT  TP.ID_PARROQUIA, TP.ID_CIUDAD, TP.NOMBRE_PARROQUIA FROM PARROQUIA TP" +
             " WHERE TP.NOMBRE_PARROQUIA LIKE CONCAT('%', :nombreParroquia, '%')")
     Flux<TbaParroquiaDto> findParishByName(String nombreParroquia);
 

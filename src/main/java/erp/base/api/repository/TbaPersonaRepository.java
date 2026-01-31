@@ -19,20 +19,20 @@ public interface TbaPersonaRepository extends ReactiveCrudRepository<TbaPersona,
      * Query para obtener las personas que son proveedores los cuales tienen productos pendientes de gestionar en las solicitudes de compras
      */
     @Query(value = "SELECT *" +
-            " FROM TBA_PERSONA" +
+            " FROM PERSONA" +
             " WHERE TBA_PERSONA.ID_PERSONA IN (SELECT DISTINCT (PERSONA.ID_PERSONA)" +
-            "                                 FROM TBA_PROVEEDOR PROVEEDOR" +
-            "         JOIN TBA_PERSONA PERSONA ON PROVEEDOR.ID_PERSONA = PERSONA.ID_PERSONA" +
+            "                                 FROM PROVEEDOR PROVEEDOR" +
+            "         JOIN PERSONA PERSONA ON PROVEEDOR.ID_PERSONA = PERSONA.ID_PERSONA" +
             "    AND PERSONA.ESPROVEEDOR_PERSONA" +
-            "         JOIN ADQ_PROVEEDORPRODUCTO PROVPRODUCTO ON PROVEEDOR.ID_PROVEEDOR = PROVPRODUCTO.ID_PROVEEDOR" +
+            "         JOIN PROVEEDORPRODUCTO PROVPRODUCTO ON PROVEEDOR.ID_PROVEEDOR = PROVPRODUCTO.ID_PROVEEDOR" +
             "    AND PROVPRODUCTO.ACTIVO_PROVEEDORPRODUCTO" +
-            "         JOIN INV_PRODUCTO PRODUCTO ON PROVPRODUCTO.ID_PRODUCTO = PRODUCTO.ID_PRODUCTO" +
+            "         JOIN PRODUCTO PRODUCTO ON PROVPRODUCTO.ID_PRODUCTO = PRODUCTO.ID_PRODUCTO" +
             "    AND PRODUCTO.ESTADO_PRODUCTO" +
-            "         JOIN ADQ_DETSOLICITUDCOMPRAPRODUCTO DETALLE ON PRODUCTO.ID_PRODUCTO = DETALLE.ID_PRODUCTO" +
+            "         JOIN DETSOLICITUDCOMPRAPRODUCTO DETALLE ON PRODUCTO.ID_PRODUCTO = DETALLE.ID_PRODUCTO" +
             "    AND DETALLE.ESTADO_DETSOLICITUDCOMPRAPROD" +
             " and (DETALLE.gestionado_detsolicitudcompraprod or DETALLE.gestionado_detsolicitudcompraprod is null)" +
             "    AND DETALLE.cantidadaprobada_detsolicitudcompraprod - DETALLE.cantidadgestionada_detsolicitudcompraprod > 0" +
-            "         JOIN ADQ_SOLICITUDCOMPRA SOLICITUD ON DETALLE.ID_SOLICITUDCOMPRA = SOLICITUD.ID_SOLICITUDCOMPRA" +
+            "         JOIN SOLICITUDCOMPRA SOLICITUD ON DETALLE.ID_SOLICITUDCOMPRA = SOLICITUD.ID_SOLICITUDCOMPRA" +
             "    AND SOLICITUD.ID_ESTADOSOLICITUD IN (3, 6)" +
             " AND SOLICITUD.id_tipoadquisicion = 1" +
             " WHERE PROVEEDOR.ESTADO_PROVEEDOR)" +
@@ -41,14 +41,14 @@ public interface TbaPersonaRepository extends ReactiveCrudRepository<TbaPersona,
 
 
     @Query(value = "SELECT TP.*" +
-            " FROM TBA_PERSONA TP" +
+            " FROM PERSONA TP" +
             " WHERE TP.ESPROVEEDOR_PERSONA" +
             " AND ( :nombre IS NULL OR UPPER(TP.NOMBRE_PERSONA) LIKE UPPER(CONCAT('%',:nombre,'%')))" +
             " AND ( :identificacion IS NULL OR UPPER(TP.IDENTIFICACION_PERSONA) LIKE UPPER(CONCAT('%',:identificacion,'%')));")
     Flux<TbaPersona> getAllPersonProviders(String nombre, String identificacion);
 
     @Query(value = "SELECT TP.*" +
-            " FROM TBA_PERSONA TP" +
+            " FROM PERSONA TP" +
             " WHERE TP.ESCLIENTE_PERSONA" +
             " AND ( :nombre IS NULL OR UPPER(TP.NOMBRE_PERSONA) LIKE UPPER(CONCAT('%',:nombre,'%')))" +
             " AND ( :identificacion IS NULL OR UPPER(TP.IDENTIFICACION_PERSONA) LIKE UPPER(CONCAT('%',:identificacion,'%')));")

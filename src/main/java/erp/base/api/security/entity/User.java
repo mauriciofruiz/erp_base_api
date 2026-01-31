@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
-@Table("tba_usuario")
+@Table("usuario")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

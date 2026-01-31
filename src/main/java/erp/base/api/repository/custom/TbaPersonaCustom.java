@@ -33,10 +33,10 @@ public class TbaPersonaCustom {
         queryBuilder.append("cli.NOMBRECOMERCIAL_CLIENTE as nombreCliente, credcli.CUPOAUTORIZADO_CREDITOCLIENTE as cupoAutorizado, credcli.CUPOUTILIZADO_CREDITOCLIENTE as cupoUtilizado, ");
         queryBuilder.append("credcli.SOBRECUPO_CREDITOCLIENTE as sobreCupo, credcli.CUPODISPONIBLE_CREDITOCLIENTE as cupoDisponible, catcli.NOMBRE_CATEGORIACLIENTE as categoriaCliente, ");
         queryBuilder.append("cli.CONTACTO_CLIENTE as contactoCliente, credcli.DIAS_CREDITOCLIENTE as diasCredito, cli.cliente_placa as placa, idf.cod_identificacionfiscal as codigoIdentificacionTributaria");
-        queryBuilder.append(" FROM TBA_PERSONA TP");
-        queryBuilder.append(" JOIN TBA_CLIENTE cli ON TP.ID_PERSONA = cli.ID_PERSONA");
-        queryBuilder.append(" JOIN TBA_CATEGORIACLIENTE catcli ON cli.ID_CATEGORIACLIENTE = catcli.ID_CATEGORIACLIENTE");
-        queryBuilder.append(" LEFT JOIN TBA_CREDITOCLIENTE credcli ON cli.ID_CLIENTE = credcli.ID_CLIENTE");
+        queryBuilder.append(" FROM PERSONA TP");
+        queryBuilder.append(" JOIN CLIENTE cli ON TP.ID_PERSONA = cli.ID_PERSONA");
+        queryBuilder.append(" JOIN CATEGORIACLIENTE catcli ON cli.ID_CATEGORIACLIENTE = catcli.ID_CATEGORIACLIENTE");
+        queryBuilder.append(" LEFT JOIN CREDITOCLIENTE credcli ON cli.ID_CLIENTE = credcli.ID_CLIENTE");
         queryBuilder.append(" LEFT JOIN trb_identificacionfiscal idf ON TP.id_identificacionfiscal = idf.id_identificacionfiscal");
         queryBuilder.append(" WHERE TP.ESCLIENTE_PERSONA");
         if (completeName != null) {
@@ -81,7 +81,7 @@ public class TbaPersonaCustom {
     private String buildQueryForSearchPerson(String completeName, String identification) {
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("SELECT TP.ID_PERSONA as personaId, TP.DIRECCION_PERSONA as direccion, TP.IDENTIFICACION_PERSONA as identificacion, TP.NOMBRE_PERSONA as nombre, TP.CORREO_PERSONA as email, TP.TELEFONO_PERSONA as telefono ");
-        queryBuilder.append(" FROM TBA_PERSONA TP");
+        queryBuilder.append(" FROM PERSONA TP");
         if (completeName != null) {
             queryBuilder.append(" WHERE UPPER(TP.NOMBRE_PERSONA) LIKE UPPER(CONCAT('%',:nombre,'%'))");
         }

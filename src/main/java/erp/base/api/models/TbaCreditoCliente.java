@@ -9,7 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Table("TBA_CREDITOCLIENTE")
+@Table("CREDITOCLIENTE")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

@@ -12,7 +12,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Table("TBA_EMPLEADO")
+@Table("EMPLEADO")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

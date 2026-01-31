@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
-@Table("adq_calendariopago")
+@Table("calendariopago")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

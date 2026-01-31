@@ -90,7 +90,7 @@ public class TbaSucursalCustom {
             Boolean isCount
     ) {
         StringBuilder queryBuilder = new StringBuilder(isCount ? "SELECT COUNT(*)" : "SELECT DISTINCT su.id_sucursal, su.*");
-        queryBuilder.append(" FROM TBA_SUCURSAL su");
+        queryBuilder.append(" FROM SUCURSAL su");
         queryBuilder.append(" WHERE su.estado_sucursal = true");
         if (cityId != null)
             queryBuilder.append(" AND su.id_ciudad = :cityId");
@@ -113,7 +113,7 @@ public class TbaSucursalCustom {
 
     public Flux<Sucursal> getBranchProduction() {
         StringBuilder queryBuilder = new StringBuilder("SELECT DISTINCT su.id_sucursal, su.*");
-        queryBuilder.append(" FROM TBA_SUCURSAL su");
+        queryBuilder.append(" FROM SUCURSAL su");
         queryBuilder.append(" JOIN inv_bodega bo ON su.id_sucursal = bo.id_sucursal");
         queryBuilder.append(" JOIN inv_tipo_bodega tbo on tbo.id_tipo_bodega = bo.id_tipo_bodega");
         queryBuilder.append(" WHERE tbo.id_tipo_bodega = :warehouseTypeId");

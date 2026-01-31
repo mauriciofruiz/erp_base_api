@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 
-@Table("trb_retencion")
+@Table("retencion")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

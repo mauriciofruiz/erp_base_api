@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 
-@Table("TBA_VEHICULOEMPRESA")
+@Table("VEHICULOEMPRESA")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

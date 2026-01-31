@@ -11,7 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 
-@Table("TBA_MATRICULA")
+@Table("MATRICULA")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

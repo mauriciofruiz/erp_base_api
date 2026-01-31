@@ -49,7 +49,7 @@ public class TbaFormaPagoRepositoryCustomImpl implements TbaFormaPagoRepositoryC
             Boolean isCount
     ) {
         StringBuilder queryBuilder = new StringBuilder(isCount ? "SELECT COUNT(*)" : "SELECT *");
-        queryBuilder.append(" FROM TBA_FORMAPAGOCOBRO");
+        queryBuilder.append(" FROM FORMAPAGOCOBRO");
         if (sortField != null && sortDirection != null)
             queryBuilder.append(" ORDER BY ").append(sortField).append(" ").append(sortDirection);
         if (limit != null && offset != null)

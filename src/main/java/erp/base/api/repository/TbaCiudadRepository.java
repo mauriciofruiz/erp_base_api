@@ -18,8 +18,8 @@ public interface TbaCiudadRepository extends ReactiveCrudRepository<TbaCiudad, I
 
 
     @Query(" SELECT TC.NOMBRE_CIUDAD, TP.NOMBRE_PROVINCIA " +
-            " FROM TBA_CIUDAD TC JOIN TBA_PARROQUIA P on TC.ID_CIUDAD = P.ID_CIUDAD" +
-            " JOIN TBA_PROVINCIA TP on TP.ID_PROVINCIA = TC.ID_PROVINCIA" +
+            " FROM CIUDAD TC JOIN PARROQUIA P on TC.ID_CIUDAD = P.ID_CIUDAD" +
+            " JOIN PROVINCIA TP on TP.ID_PROVINCIA = TC.ID_PROVINCIA" +
             " WHERE P.ID_PARROQUIA =:idParroquia")
     Mono<TbaCiudadDto> getCityByIdParish(Integer idParroquia);
 

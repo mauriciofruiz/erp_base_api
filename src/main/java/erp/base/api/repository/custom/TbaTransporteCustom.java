@@ -52,8 +52,8 @@ public class TbaTransporteCustom {
             Integer offset,
             Boolean isCount
     ) {
-        StringBuilder queryBuilder = new StringBuilder(isCount ? "SELECT COUNT(tr.*) FROM TBA_TRANSPORTE tr" : "SELECT tr.*, tv.* FROM TBA_TRANSPORTE tr");
-        queryBuilder.append(" JOIN TBA_TIPOVEHICULO tv ON tr.ID_TIPOVEHICULO = tv.ID_TIPOVEHICULO");
+        StringBuilder queryBuilder = new StringBuilder(isCount ? "SELECT COUNT(tr.*) FROM TRANSPORTE tr" : "SELECT tr.*, tv.* FROM TRANSPORTE tr");
+        queryBuilder.append(" JOIN TIPOVEHICULO tv ON tr.ID_TIPOVEHICULO = tv.ID_TIPOVEHICULO");
         queryBuilder.append(" WHERE tr.fecha_creacion BETWEEN :startDate AND :endDate");
         if (vehicleTypeName != null)
             queryBuilder.append(" AND UPPER(tv.NOMBRE_TIPOVEHICULO) LIKE UPPER(CONCAT('%', :vehicleTypeName, '%'))");

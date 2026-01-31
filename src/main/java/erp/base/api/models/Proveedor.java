@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
-@Table("TBA_PROVEEDOR")
+@Table("PROVEEDOR")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

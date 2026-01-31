@@ -9,7 +9,7 @@ package erp.base.api.models;
         import org.springframework.data.relational.core.mapping.Column;
         import org.springframework.data.relational.core.mapping.Table;
 
-@Table("TBA_DOCUMENTOVERIFICACION")
+@Table("DOCUMENTOVERIFICACION")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

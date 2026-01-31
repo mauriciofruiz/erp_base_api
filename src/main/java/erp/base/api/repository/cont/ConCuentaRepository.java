@@ -12,8 +12,8 @@ public interface ConCuentaRepository extends ReactiveCrudRepository<ConCuenta, I
 
     @Query("SELECT CE.ID_EMPLEADOCUENTA, CE.ID_EMPLEADO, CE.ID_CUENTA, C.ID_TIPOCUENTA," +
             " C.NUMERO_CUENTA, C.NOMBRE_CUENTA, C.NUMERO_CUENTAPADRE" +
-            " FROM CON_EMPLEADOCUENTA CE" +
-            " JOIN CON_CUENTA C ON C.ID_CUENTA = CE.ID_CUENTA" +
+            " FROM EMPLEADOCUENTA CE" +
+            " JOIN CUENTA C ON C.ID_CUENTA = CE.ID_CUENTA" +
             " WHERE CE.ID_EMPLEADO =:idEmpleado")
    Flux<ConCuentaDatosContablesDto> getDatosContables(Integer idEmpleado);
 

@@ -9,7 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
-@Table("TRB_TARIFAIVA")
+@Table("TARIFAIVA")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

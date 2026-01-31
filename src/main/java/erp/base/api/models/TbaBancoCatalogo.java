@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @EqualsAndHashCode(callSuper = true)
-@Table("TBA_BANCOCATALOGO")
+@Table("BANCOCATALOGO")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

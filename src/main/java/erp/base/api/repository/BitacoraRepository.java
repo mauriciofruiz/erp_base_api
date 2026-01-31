@@ -22,7 +22,7 @@ public interface BitacoraRepository extends ReactiveCrudRepository<Bitacora, Int
             " BITACORA.IPDISPOSITIVO_BITACORA     AS ip," +
             " BITACORA.NOMBREDISPOSITIVO_BITACORA AS dispositivo" +
             " FROM BITACORA" +
-            " JOIN TBA_USUARIO USUARIO ON USUARIO.ID_USR = BITACORA.ID_USR" +
+            " JOIN USUARIO USUARIO ON USUARIO.ID_USR = BITACORA.ID_USR" +
             " WHERE IDENTIFICADOR_BITACORA = :id AND TABLE_BITACORA = :table")
     Flux<BitacoraDto> findAllByIdAndTable(Integer id, String table);
 }

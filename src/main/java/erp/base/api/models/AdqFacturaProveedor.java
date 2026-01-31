@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-@Table("harmony.adq_facturaproveedor")
+@Table("FACTURAPROVEEDOR")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

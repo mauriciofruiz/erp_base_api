@@ -9,7 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
-@Table("CON_PERIODO")
+@Table("PERIODO")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

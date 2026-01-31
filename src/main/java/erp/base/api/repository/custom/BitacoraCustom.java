@@ -50,38 +50,38 @@ public class BitacoraCustom {
                         CASE\s
                             WHEN b.CAMPO_BITACORA = 'id_parroquia' THEN\s
                                 (SELECT p.nombre_parroquia\s
-                                 FROM harmony.tba_parroquia p\s
+                                 FROM PARROQUIA p\s
                                  WHERE p.id_parroquia = CAST(b.OLDVAL_BITACORA AS INTEGER))\s
                             WHEN b.CAMPO_BITACORA = 'id_pais' THEN\s
                                 (SELECT pa.nombre_pais\s
-                                 FROM harmony.tba_pais pa\s
+                                 FROM PAIS pa\s
                                  WHERE pa.id_pais = CAST(b.OLDVAL_BITACORA AS INTEGER))\s
                             WHEN b.CAMPO_BITACORA = 'id_cuenta' THEN\s
                                 (SELECT cc.nombre_cuenta\s
-                                 FROM harmony.con_cuenta cc\s
+                                 FROM CUENTA cc\s
                                  WHERE cc.id_cuenta = CAST(b.OLDVAL_BITACORA AS INTEGER))\s
                             ELSE b.OLDVAL_BITACORA\s
                         END as oldValue,
                         CASE\s
                             WHEN b.CAMPO_BITACORA = 'id_parroquia' THEN\s
                                 (SELECT p.nombre_parroquia\s
-                                 FROM harmony.tba_parroquia p\s
+                                 FROM PARROQUIA p\s
                                  WHERE p.id_parroquia = CAST(b.NEWVAL_BITACORA AS INTEGER))\s
                             WHEN b.CAMPO_BITACORA = 'id_pais' THEN\s
                                 (SELECT pa.nombre_pais\s
-                                 FROM harmony.tba_pais pa\s
+                                 FROM PAIS pa\s
                                  WHERE pa.id_pais = CAST(b.NEWVAL_BITACORA AS INTEGER))\s
                             WHEN b.CAMPO_BITACORA = 'id_cuenta' THEN\s
                                 (SELECT cc.nombre_cuenta\s
-                                 FROM harmony.con_cuenta cc\s
+                                 FROM CUENTA cc\s
                                  WHERE cc.id_cuenta = CAST(b.NEWVAL_BITACORA AS INTEGER))\s
                             ELSE b.NEWVAL_BITACORA\s
                         END as newValue, b.FECHA_BITACORA as date, b.IPDISPOSITIVO_BITACORA as deviceIp, b.NOMBREDISPOSITIVO_BITACORA as deviceName, p.nombre_persona as userName""");
         queryBuilder.append(" FROM bitacora b");
-        queryBuilder.append(" LEFT JOIN tba_usuario u on b.id_usr = u.id_usr");
-        queryBuilder.append(" LEFT JOIN tba_persona p on u.id_persona = p.id_persona");
+        queryBuilder.append(" LEFT JOIN USUARIO u on b.id_usr = u.id_usr");
+        queryBuilder.append(" LEFT JOIN PERSONA p on u.id_persona = p.id_persona");
         queryBuilder.append(" where b.identificador_bitacora in (:identifierList)");
-        queryBuilder.append(" and (b.table_bitacora = 'tba_cliente' or b.table_bitacora = 'tba_persona' or b.table_bitacora = 'tba_creditocliente' or b.table_bitacora ='excepciones_cliente_descuento')");
+        queryBuilder.append(" and (b.table_bitacora = 'CLIENTE' or b.table_bitacora = 'PERSONA' or b.table_bitacora = 'CREDITOCLIENTE' or b.table_bitacora ='excepciones_cliente_descuento')");
         if (sortField != null && sortDirection != null) {
             queryBuilder.append(" ORDER BY ").append(sortField).append(" ").append(sortDirection);
         }

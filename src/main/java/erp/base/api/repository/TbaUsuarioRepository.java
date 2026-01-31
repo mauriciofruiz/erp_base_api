@@ -27,14 +27,14 @@ public interface TbaUsuarioRepository extends ReactiveCrudRepository<TbaUsuario,
     Flux<TbaUsuario> findByEstadoUsr(Boolean estadoUsr, Pageable pageable);
 
     @Query(" SELECT DISTINCT TU.*" +
-            " FROM TBA_USUARIO TU" +
-            " RIGHT JOIN ADQ_SOLICITUDCOMPRA ADQ on TU.ID_USR = ADQ.ID_USR" +
+            " FROM USUARIO TU" +
+            " RIGHT JOIN SOLICITUDCOMPRA ADQ on TU.ID_USR = ADQ.ID_USR" +
             " WHERE TU.ESTADO_USR =:estado")
     Flux<TbaUsuario> findUsersRequestPurchase(Boolean estado);
 
     @Query(" SELECT DISTINCT TU.*" +
-            " FROM TBA_USUARIO TU" +
-            " RIGHT JOIN ADQ_ORDENCOMPRA AO on TU.ID_USR = AO.ID_USR" +
+            " FROM USUARIO TU" +
+            " RIGHT JOIN ORDENCOMPRA AO on TU.ID_USR = AO.ID_USR" +
             " WHERE TU.ESTADO_USR =:estado")
     Flux<TbaUsuario> findUsersPurchaseOrder(Boolean estado);
 }
