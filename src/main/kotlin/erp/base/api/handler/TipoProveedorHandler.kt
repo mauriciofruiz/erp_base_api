@@ -1,0 +1,66 @@
+package erp.base.api.handler
+
+import erp.base.api.dto.TipoProveedorDto
+import erp.base.api.exception.CustomException
+import erp.base.api.models.TipoProveedor
+import erp.base.api.service.TipoProveedorService
+import erp.base.api.validation.ObjectValidator
+import org.slf4j.LoggerFactory
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
+import org.springframework.stereotype.Component
+import org.springframework.web.reactive.function.server.ServerRequest
+import org.springframework.web.reactive.function.server.ServerResponse
+import reactor.core.publisher.Mono
+
+@Component
+class TipoProveedorHandler(
+    private val tbaTipoProveedorService: TipoProveedorService,
+    private val objectValidator: ObjectValidator,
+) {
+    private val log = LoggerFactory.getLogger(javaClass)
+
+    fun createVendorType(serverRequest: ServerRequest): Mono<ServerResponse> =
+        serverRequest.bodyToMono(TipoProveedorDto::class.java)
+            .doOnNext { objectValidator.validate(it) }
+            .log()
+            .flatMap { dto ->
+                ServerResponse.ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(tbaTipoProveedorService.createVendorType(dto), TipoProveedor::class.java)
+            }
+            .onErrorMap { e ->
+                log.error(e.message)
+                CustomException(HttpStatus.INTERNAL_SERVER_ERROR, e.cause?.message ?: e.message ?: "")
+            }
+
+    fun getVendorTypeById(serverRequest: ServerRequest): Mono<ServerResponse> {
+        val id = serverRequest.pathVariable("id").toInt()
+        return ServerResponse.ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(tbaTipoProveedorService.getVendorTypeById(id), TipoProveedor::class.java)
+            .onErrorMap { e ->
+                log.error(e.message)
+                CustomException(HttpStatus.INTERNAL_SERVER_ERROR, e.cause?.message ?: e.message ?: "")
+            }
+    }
+
+    fun getAllVendorTypes(serverRequest: ServerRequest): Mono<ServerResponse> =
+        ServerResponse.ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(tbaTipoProveedorService.getAllVendorTypes(), TipoProveedor::class.java)
+            .onErrorMap { e ->
+                log.error(e.message)
+                CustomException(HttpStatus.INTERNAL_SERVER_ERROR, e.cause?.message ?: e.message ?: "")
+            }
+
+    fun deleteVendorType(serverRequest: ServerRequest): Mono<ServerResponse> {
+        val id = serverRequest.pathVariable("id").toInt()
+        return tbaTipoProveedorService.deleteVendorType(id)
+            .then(ServerResponse.noContent().build())
+            .onErrorMap { e ->
+                log.error(e.message)
+                CustomException(HttpStatus.INTERNAL_SERVER_ERROR, e.cause?.message ?: e.message ?: "")
+            }
+    }
+}

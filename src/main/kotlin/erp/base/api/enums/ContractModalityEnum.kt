@@ -1,0 +1,12 @@
+package erp.base.api.enums
+
+enum class ContractModalityEnum(val nameModality: String, val testTime: Int) {
+    INTERNSHIP("PASANTIA", 0),
+    UNDEFINED_TIME("INDEFINIDO - TIEMPO DE PRUEBA", 3),
+    EVENTUAL("EVENTUAL", 0),
+    BY_WORK("POR OBRA", 0),
+    INDEFINIDO_JUVENIL("INDEFINIDO - JUVENIL", 0),
+    CT_PROJECT("CT PROYECTO", 0),
+    PRODUCTIVE_CONTRACT("CONTRATO PRODUCTIVO", 0),
+    SPECIAL_EMERGENT("ESPECIAL EMERGENTE", 0)
+}

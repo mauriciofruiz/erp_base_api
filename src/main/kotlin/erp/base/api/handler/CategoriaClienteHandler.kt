@@ -1,0 +1,74 @@
+package erp.base.api.handler
+
+import erp.base.api.exception.CustomException
+import erp.base.api.models.CategoriaCliente
+import erp.base.api.service.CategoriaClienteService
+import erp.base.api.validation.ObjectValidator
+import org.slf4j.LoggerFactory
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
+import org.springframework.stereotype.Component
+import org.springframework.web.reactive.function.server.ServerRequest
+import org.springframework.web.reactive.function.server.ServerResponse
+import reactor.core.publisher.Mono
+
+@Component
+class CategoriaClienteHandler(
+    private val tbaCategoriaClienteService: CategoriaClienteService,
+    private val objectValidator: ObjectValidator,
+) {
+    private val log = LoggerFactory.getLogger(javaClass)
+
+    fun getAllCategoryClient(request: ServerRequest): Mono<ServerResponse> =
+        ServerResponse.ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(tbaCategoriaClienteService.getAllCategoryClient(), CategoriaCliente::class.java)
+
+    fun getRequestBySearchParams(request: ServerRequest): Mono<ServerResponse> {
+        val nameParam = request.queryParam("name").orElse(null)
+        val page = request.queryParam("page").orElse("1").toInt()
+        val limit = request.queryParam("limit").orElse("10").toInt()
+        val sortDirection = request.queryParam("sortDirection").orElse(null)
+        val sortField = request.queryParam("sortField").orElse(null)
+        if (request.queryParams().isEmpty()) {
+            return getAllCategoryClient(request)
+        }
+        return ServerResponse.ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(tbaCategoriaClienteService.getRequestBySearchParams(nameParam, page, limit, sortDirection, sortField), CategoriaCliente::class.java)
+            .onErrorMap { e ->
+                log.error(e.message)
+                CustomException(HttpStatus.INTERNAL_SERVER_ERROR, e.cause?.message ?: e.message ?: "")
+            }
+    }
+
+    fun create(request: ServerRequest): Mono<ServerResponse> =
+        request.bodyToMono(CategoriaCliente::class.java)
+            .doOnNext { objectValidator.validate(it) }
+            .log()
+            .flatMap { categoriaCliente ->
+                ServerResponse.ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(tbaCategoriaClienteService.createClientCategory(categoriaCliente), CategoriaCliente::class.java)
+            }
+            .onErrorMap { e ->
+                log.error(e.message)
+                CustomException(HttpStatus.INTERNAL_SERVER_ERROR, e.cause?.message ?: e.message ?: "")
+            }
+
+    fun update(request: ServerRequest): Mono<ServerResponse> {
+        val id = request.pathVariable("id").toInt()
+        return request.bodyToMono(CategoriaCliente::class.java)
+            .doOnNext { objectValidator.validate(it) }
+            .log()
+            .flatMap { categoriaCliente ->
+                ServerResponse.ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(tbaCategoriaClienteService.updateClientCategory(id, categoriaCliente), CategoriaCliente::class.java)
+            }
+            .onErrorMap { e ->
+                log.error(e.message)
+                CustomException(HttpStatus.INTERNAL_SERVER_ERROR, e.cause?.message ?: e.message ?: "")
+            }
+    }
+}

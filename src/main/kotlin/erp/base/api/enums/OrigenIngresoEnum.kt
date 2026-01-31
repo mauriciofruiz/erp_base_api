@@ -1,0 +1,11 @@
+package erp.base.api.enums
+
+enum class OrigenIngresoEnum(val id: Int, val description: String) {
+    EMPLEADO_PUBLICO(1, "EMPLEADO PÚBLICO"),
+    EMPLEADO_PRIVADO(2, "EMPLEADO PRIVADO"),
+    INDEPENDIENTE(3, "INDEPENDIENTE"),
+    AMA_DE_CASA_O_ESTUDIANTE(4, "AMA DE CASA O ESTUDIANTE"),
+    RENTISTA(5, "RENTISTA"),
+    JUBILADO(6, "JUBILADO"),
+    REMESAS_DEL_EXTERIOR(7, "REMESAS DEL EXTERIOR")
+}
