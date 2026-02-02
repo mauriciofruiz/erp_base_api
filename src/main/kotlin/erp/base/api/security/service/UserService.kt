@@ -37,7 +37,7 @@ class UserService(
     private val log = LoggerFactory.getLogger(javaClass)
 
     fun login(dto: LoginDto): Mono<LoginResponseDto> =
-        userRepository.findByNickUsrAndEstadoUsr(dto.nick!!.uppercase(), true)
+        userRepository.findByNickUsrIgnoreCaseAndEstadoUsr(dto.nick!!.trim(), true)
             .filter { user -> passwordEncoder.matches(dto.password, user.password) }
             .flatMap { user ->
                 sesionRepository.existsSesionByIdUsrAndEstado(user.idUsr!!, true)
@@ -79,7 +79,6 @@ class UserService(
                                         token = jwtProvider.generateToken(user),
                                         password = user.password,
                                         photo = user.imgUsr,
-                                        position = user.cargoUsr,
                                         menuList = menuUserResponseList,
                                         cashId = user.idCaja,
                                         branchId = user.idSucursal,

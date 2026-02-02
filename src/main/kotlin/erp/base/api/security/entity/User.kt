@@ -7,7 +7,6 @@ import org.springframework.data.relational.core.mapping.Table
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.time.LocalDateTime
-import java.math.BigDecimal
 
 @Table("usuario")
 data class User(
@@ -32,10 +31,6 @@ data class User(
     @JsonProperty("password")
     var passUsr: String? = null,
 
-    @Column("cargo_usr")
-    @JsonProperty("position")
-    var cargoUsr: Int? = null,
-
     @Column("fechaingreso_usr")
     @JsonProperty("entryDate")
     var fechaIngresoUsr: LocalDateTime? = null,
@@ -55,10 +50,6 @@ data class User(
     @Column("tiempo_usr")
     @JsonProperty("time")
     var tiempoUsr: Int? = null,
-
-    @Column("creditomaximo_usr")
-    @JsonProperty("maxCredit")
-    var creditomaximoUsr: BigDecimal? = null,
 
     @Column("diasmaximo_usr")
     @JsonProperty("maxDays")

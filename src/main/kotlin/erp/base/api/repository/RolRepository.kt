@@ -10,6 +10,10 @@ import reactor.core.publisher.Flux
 @Repository
 interface RolRepository : ReactiveCrudRepository<Rol, Int> {
 
-    @Query("select tba_rol.id_rol, tba_rol.nombre_rol, tba_rol.descripcion_rol from tba_rol join tba_rolusuario on tba_rol.id_rol = tba_rolusuario.id_rol where tba_rolusuario.id_usr = :userId and tba_rolusuario.estado_rolusuario order by tba_rol.id_rol;")
+    @Query("""SELECT r.id_rol, r.nombre_rol, r.descripcion_rol
+            FROM rol r
+            JOIN rolusuario ru ON r.id_rol = ru.id_rol
+            WHERE ru.id_usr = :userId AND ru.estado_rolusuario = true
+            ORDER BY r.id_rol;""")
     fun getActiveRolesByUser(userId: Int): Flux<RolResponseDto>
 }

@@ -90,8 +90,14 @@ class SwaggerConfig {
             .path("/departamento", createDepartmentPath())
             .path("/departamento/{id}", createDepartmentByIdPath())
 
-    private fun createLoginPath(): PathItem =
-        PathItem()
+    private fun createLoginPath(): PathItem {
+        val loginRequestSchema = Schema<Any>()
+            .type("object")
+            .required(listOf("nick", "password"))
+            .addProperty("nick", Schema<Any>().type("string").description("User nickname / username"))
+            .addProperty("password", Schema<Any>().type("string").description("User password"))
+            .example(mapOf("nick" to "admin", "password" to "your_password"))
+        return PathItem()
             .post(
                 Operation()
                     .tags(listOf("Authentication"))
@@ -99,11 +105,15 @@ class SwaggerConfig {
                     .description("Authenticates a user and returns a JWT token")
                     .requestBody(
                         RequestBody()
+                            .description("Login credentials")
+                            .required(true)
                             .content(
                                 Content()
                                     .addMediaType(
                                         "application/json",
-                                        MediaType().schema(Schema<Any>().type("object")),
+                                        MediaType()
+                                            .schema(loginRequestSchema)
+                                            .example(mapOf("nick" to "admin", "password" to "your_password")),
                                     ),
                             ),
                     )
@@ -125,6 +135,7 @@ class SwaggerConfig {
                             .addApiResponse("400", ApiResponse().description("Invalid request body")),
                     ),
             )
+    }
 
     private fun createLogoutPath(): PathItem =
         PathItem()

@@ -26,7 +26,7 @@ interface EmpleadoRepository : ReactiveCrudRepository<Empleado, Int> {
             "       tp.CELULAR_PERSONA,\n" +
             "       tp.CORREO_PERSONA,\n" +
             "       tu.IMG_USR,\n" +
-            "       tc.NOMBRE_CARGO,\n" +
+            "       'Cargo no asignado',\n" +
             "       ts.NOMBRE_SUCURSAL,\n" +
             "       te.SALARIO_EMPLEADO,\n" +
             "       te.FECHAINGRESOEMPRESA_EMPLEADO,\n" +
@@ -35,7 +35,6 @@ interface EmpleadoRepository : ReactiveCrudRepository<Empleado, Int> {
             "FROM EMPLEADO te\n" +
             "         LEFT JOIN USUARIO tu ON tu.ID_PERSONA = te.ID_PERSONA\n" +
             "         JOIN PERSONA tp ON te.ID_PERSONA = tp.ID_PERSONA\n" +
-            "         JOIN CARGO tc ON tu.cargo_usr = tc.ID_CARGO\n" +
             "         JOIN SUCURSAL ts ON te.ID_SUCURSAL = ts.ID_SUCURSAL\n" +
             "WHERE tp.ESEMPLEADO_PERSONA\n" +
             "  AND (:nombreEmpleado is null or UPPER(tp.NOMBRE_PERSONA) LIKE UPPER(CONCAT('%', :nombreEmpleado, '%')))\n" +

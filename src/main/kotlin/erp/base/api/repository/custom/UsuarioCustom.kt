@@ -24,7 +24,6 @@ class UsuarioCustom(private val databaseClient: DatabaseClient) {
         idPersona = row.get("id_persona", Int::class.javaObjectType),
         nickUsr = row.get("nick_usr", String::class.java),
         passUsr = row.get("pass_usr", String::class.java),
-        cargoUsr = row.get("cargo_usr", Int::class.javaObjectType),
         fechaIngresoUsr = row.get("fechaingreso_usr", LocalDateTime::class.java),
         fechaInactivacionUsr = row.get("fechainactivacion_usr", LocalDateTime::class.java),
         horaInicioUsr = row.get("horainicio_usr", String::class.java),

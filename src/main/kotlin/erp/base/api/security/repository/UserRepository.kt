@@ -7,5 +7,5 @@ import reactor.core.publisher.Mono
 
 @Repository
 interface UserRepository : ReactiveCrudRepository<User, Int> {
-    fun findByNickUsrAndEstadoUsr(nickUsr: String, estadoUsr: Boolean): Mono<User>
+    fun findByNickUsrIgnoreCaseAndEstadoUsr(nickUsr: String, estadoUsr: Boolean): Mono<User>
 }

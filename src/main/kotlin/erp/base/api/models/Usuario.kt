@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
-import java.math.BigDecimal
 
 @Table("usuario")
 data class Usuario(
@@ -30,10 +29,6 @@ data class Usuario(
     @JsonProperty("password")
     var passUsr: String? = null,
 
-    @Column("cargo_usr")
-    @JsonProperty("position")
-    var cargoUsr: Int? = null,
-
     @Column("fechaingreso_usr")
     @JsonProperty("entryDate")
     var fechaIngresoUsr: LocalDateTime? = null,
@@ -53,10 +48,6 @@ data class Usuario(
     @Column("tiempo_usr")
     @JsonProperty("time")
     var tiempoUsr: Int? = null,
-
-    @Column("creditomaximo_usr")
-    @JsonProperty("maxCredit")
-    var creditomaximoUsr: BigDecimal? = null,
 
     @Column("diasmaximo_usr")
     @JsonProperty("maxDays")

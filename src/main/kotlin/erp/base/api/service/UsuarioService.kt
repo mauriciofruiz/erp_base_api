@@ -75,7 +75,6 @@ class UsuarioService(
             }
         }
         userResponse.idSucursal?.let { user.idSucursal = it }
-        userResponse.cargoUsr?.let { user.cargoUsr = it }
         userResponse.horaInicioUsr?.let { user.horaInicioUsr = it }
         userResponse.horaFinUsr?.let { user.horaFinUsr = it }
         user.estadoUsr = userResponse.estado
@@ -144,13 +143,11 @@ class UsuarioService(
         idPersona = row.get("ID_PERSONA", Integer::class.java)?.toInt(),
         nickUsr = row.get("NICK_USR", String::class.java),
         passUsr = row.get("PASS_USR", String::class.java),
-        cargoUsr = row.get("CARGO_USR", Integer::class.java)?.toInt(),
         fechaIngresoUsr = row.get("FECHAINGRESO_USR", LocalDateTime::class.java),
         fechaInactivacionUsr = row.get("FECHAINACTIVACION_USR", LocalDateTime::class.java),
         horaInicioUsr = row.get("HORAINICIO_USR", String::class.java),
         horaFinUsr = row.get("HORAFIN_USR", String::class.java),
         tiempoUsr = row.get("TIEMPO_USR", Integer::class.java)?.toInt(),
-        creditomaximoUsr = null,
         diasmaximoUsr = null,
         codigoDesbloqueoUsr = row.get("CODDESBLOQUEO_USR", String::class.java),
         imgUsr = row.get("IMG_USR", String::class.java),
@@ -241,13 +238,11 @@ class UsuarioService(
                 idPersona = personId,
                 nickUsr = nickName,
                 passUsr = Utils.encriptKey("1234"),
-                cargoUsr = chargeId,
                 fechaIngresoUsr = LocalDateTime.now(),
                 fechaInactivacionUsr = null,
                 horaInicioUsr = null,
                 horaFinUsr = null,
                 tiempoUsr = null,
-                creditomaximoUsr = null,
                 diasmaximoUsr = null,
                 codigoDesbloqueoUsr = null,
                 imgUsr = null,
